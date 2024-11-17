@@ -41,9 +41,9 @@ export async function POST(request:NextRequest) {
             from: "onboarding@resend.dev",
             to:email,
             subject:"Cambio de contraseña",
-            html: "<h1>Holaaa Rodrigoo </h1>"
-            //html: "<a href= {${forgetUrl}> Cambia tu contraseña </a>"
-            //html: "<h1>Holaaa Rodrigoo </h1> <a href= {${forgetUrl}> Cambia tu contraseña </a>"
+            //html: "<h1>Holaaa Rodrigoo </h1>"
+            html: "<a href= ${forgetUrl}> Cambia tu contraseña </a>"
+           //html: "<h1>Holaaa Rodrigoo </h1> <a href= ${forgetUrl} > Cambia tu contraseña </a>"
         });
 
         return NextResponse.json(
@@ -53,10 +53,9 @@ export async function POST(request:NextRequest) {
 
 
     } catch (error) {
-        NextResponse.json({
-            message: messages.error.default,
-        },{
-            status: 400,
-        });
+        NextResponse.json(
+            { message: messages.error.default, error },
+            {status: 400,}
+        );
     }
 }
